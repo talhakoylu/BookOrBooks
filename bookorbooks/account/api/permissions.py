@@ -9,3 +9,19 @@ class IsParent(BasePermission):
             return False
         return True
     message = AccountStrings.PermissionStrings.is_parent_message
+
+
+class IsChild(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.user_type != 2:
+            return False
+        return True
+    message = AccountStrings.PermissionStrings.is_child_message
+
+
+class IsInstructor(BasePermission):
+    def has_permission(self, request, view):
+        if request.user.user_type != 4:
+            return False
+        return True
+    message = AccountStrings.PermissionStrings.is_instructor_message

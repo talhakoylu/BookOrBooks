@@ -30,6 +30,15 @@ class AccountStrings():
         meta_verbose_name = "Ebeveyn"
         meta_verbose_name_plural = "Ebeveynler"
         user_type_error = "Kullanıcı bir ebevyn olarak belirtilmemiş, ekleyebilmek için önce hesap ayarlarından statüsünü ebeveyn yapın!"
+    
+    
+    class InstructorProfileStrings():
+        user_verbose_name = "Kullanıcı"
+        school_verbose_name = "Okul"
+        branch_verbose_name = "Branş"
+        meta_verbose_name = "Eğitmen"
+        meta_verbose_name_plural = "Eğitmenler"
+        user_type_error = "Kullanıcı bir eğitmen olarak belirtilmemiş, ekleyebilmek için önce hesap ayarlarından statüsünü eğitmen yapın!"
 
     class ChildListString():
         parent_verbose_name = "Ebeveyn"
@@ -44,3 +53,5 @@ class AccountStrings():
 
     class PermissionStrings():
         is_parent_message = "To do this, you must be a parent."
+        is_child_message = "To do this, you must be a child."
+        is_instructor_message = "To do this, you must be a instructor."

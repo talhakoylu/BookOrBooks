@@ -11,7 +11,7 @@ class ChildProfile(models.Model):
         on_delete=models.CASCADE,
         primary_key=True,
         verbose_name=AccountStrings.ChildProfileStrings.user_verbose_name,
-        related_name="user_child_profiles")
+        related_name="user_child")
     city = models.ForeignKey(
         City,
         on_delete=models.SET_NULL,

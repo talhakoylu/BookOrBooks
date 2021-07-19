@@ -1,3 +1,4 @@
+from account.models.instructor_model import InstructorProfile
 from account.models.child_profile_model import ChildProfile
 from account.models.parent_profile_model import ParentProfile
 from constants.account_strings import AccountStrings
@@ -69,17 +70,27 @@ class CustomUser(AbstractUser):
         if user_origin.user_type != self.user_type:
             ChildProfile.objects.filter(user=self).delete()
             ParentProfile.objects.filter(user=self).delete()
+            InstructorProfile.objects.filter(user=self).delete()
             if user_origin.user_type == 1:
                 if self.user_type == 2:
                     ChildProfile.objects.get_or_create(user=self)
                 elif self.user_type == 3:
                     ParentProfile.objects.get_or_create(user=self)
+                elif self.user_type == 4:
+                    InstructorProfile.objects.get_or_create(user=self)
             elif user_origin.user_type == 2:
                 if self.user_type == 3:
                     ParentProfile.objects.get_or_create(user=self)
+                elif self.user_type == 4:
+                    InstructorProfile.objects.get_or_create(user=self)
             elif user_origin.user_type == 3:
                 if self.user_type == 2:
                     ChildProfile.objects.get_or_create(user=self)
+            elif user_origin.user_type == 4:
+                if self.user_type == 2:
+                    ChildProfile.objects.get_or_create(user=self)
+                elif self.user_type == 3:
+                    ParentProfile.objects.get_or_create(user=self)
 
     def save(self, *args, **kwargs):
         """
@@ -92,6 +103,8 @@ class CustomUser(AbstractUser):
                 return ChildProfile.objects.create(user=self)
             elif self.user_type == 3:
                 return ParentProfile.objects.create(user=self)
+            elif self.user_type == 4:
+                return InstructorProfile.objects.create(user=self)
         else:
             self.change_user_type()
 

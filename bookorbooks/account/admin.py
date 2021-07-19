@@ -1,3 +1,4 @@
+from account.models.instructor_model import InstructorProfile
 from account.models.child_list_model import ChildList
 from django.core.checks.messages import Error
 from account.models.parent_profile_model import ParentProfile
@@ -119,3 +120,30 @@ class ChildListModel(admin.ModelAdmin):
         return obj.child.get_full_name
     get_child.admin_order_field  = 'child'  
     get_child.short_description = 'Child'  
+
+
+@admin.register(InstructorProfile)
+class InstructorProfileAdmin(admin.ModelAdmin):
+    model = InstructorProfile
+    list_display = ["pk", "full_name", "instructor_school", "user_email", "user_gender"]
+    list_display_links = ["pk", "full_name"]
+
+    def user_email(self, obj):
+        return obj.user.email
+
+    user_email.short_description = "Email"
+
+    def user_gender(self, obj):
+        return obj.user.get_gender_display()
+
+    user_gender.short_description = "Cinsiyet"
+
+    def full_name(self, obj):
+        return obj.get_full_name
+
+    full_name.short_description = "İsim Soyisim"
+    
+    def instructor_school(self, obj):
+        return obj.school
+
+    instructor_school.short_description = "Okul"

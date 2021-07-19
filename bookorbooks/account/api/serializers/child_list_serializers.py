@@ -46,3 +46,18 @@ class ChildRecordAddSerializer(ModelSerializer):
     class Meta:
         model = ChildList
         exclude = ("parent",)
+
+
+class ChildrenForDetailSerailizer(ModelSerializer):
+    child = ChildSerializer()
+
+    class Meta:
+        model = ChildList
+        fields = ["id", "child"]
+
+class ParentSerializerNew(ModelSerializer):
+    user = UserSerializer()
+    children = ChildrenForDetailSerailizer(many = True, read_only = True, source = "parent_children")
+    class Meta:
+        model = ParentProfile
+        fields = "__all__"

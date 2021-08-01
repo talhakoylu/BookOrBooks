@@ -44,6 +44,9 @@ class UserChildProfileSerializer(ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
+        """
+            Parsing the partial data to save the other table.
+        """
         if 'user_child' in validated_data:
             nested_serializer = self.fields['user_child']
             nested_instance = instance.user_child
@@ -64,6 +67,9 @@ class UserParentProfileSerializer(ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
+        """
+            Parsing the partial data to save the other table.
+        """
         if 'user_parent' in validated_data:
             nested_serializer = self.fields['user_parent']
             nested_instance = instance.user_parent
@@ -84,6 +90,9 @@ class UserInstructorProfileSerializer(ModelSerializer):
         ]
 
     def update(self, instance, validated_data):
+        """
+            Parsing the partial data to save the other table.
+        """
         if 'user_instructor' in validated_data:
             nested_serializer = self.fields['user_instructor']
             nested_instance = instance.user_instructor

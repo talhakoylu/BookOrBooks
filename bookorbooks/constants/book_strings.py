@@ -54,3 +54,16 @@ class BookStrings():
                  sırasıyla ilk başta görsel eklenir ve altına da yazı alanı gelir."
         meta_verbose_name = "Kitap Sayfası"
         meta_verbose_name_plural = "Kitap Sayfaları"
+
+    class ReadingHistoryStrings():
+        book_verbose_name = "Kitap"
+        child_verbose_name = "Çocuk"
+        is_finished_verbose_name = "Kitap bitirildi mi?"
+        is_finished_false = "Hayır"
+        is_finished_true = "Evet"
+        counter_verbose_name = "Okuma Sayacı"
+        meta_verbose_name = "Okuma Geçmişi"
+        meta_verbose_name_plural = "Okuma Geçmişleri"
+
+    class PermissionStrings():
+        is_own_child_permission = "The person whose record you want to see must be your child."

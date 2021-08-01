@@ -31,5 +31,5 @@ class BookPageTests(APITestCase):
         assert page_title == self.book_page.get_page_title
 
     def test_books_page_list_view(self):
-        response = self.client.get(url)
-        assert 200 == response.status_code
+        response = self.client.get(self.url)
+        self.assertEqual(200, response.status_code)

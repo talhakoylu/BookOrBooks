@@ -2,7 +2,6 @@ from constants.account_strings import AccountStrings
 from django.core.exceptions import ValidationError
 from django.db import models
 from django.conf import settings
-from school.models import School
 
 
 class InstructorProfile(models.Model):
@@ -13,7 +12,7 @@ class InstructorProfile(models.Model):
         verbose_name=AccountStrings.InstructorProfileStrings.user_verbose_name,
         related_name="user_instructor")
     school = models.ForeignKey(
-        School,
+        "school.School",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -35,5 +34,8 @@ class InstructorProfile(models.Model):
         return self.get_full_name
 
     def clean(self) -> None:
+        """
+        This method will check if the user type is an instructor.
+        """
         if self.user.user_type != 4:
             raise ValidationError(AccountStrings.InstructorProfileStrings.user_type_error)

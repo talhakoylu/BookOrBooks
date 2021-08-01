@@ -1,11 +1,10 @@
 from country.models.abstract_country_base_model import AbstractCountryBaseModel
 from constants.country_strings import CountryStrings
 from django.db import models
-from country.models import Country
 
 class City(AbstractCountryBaseModel):
     country = models.ForeignKey(
-        Country,
+        "country.Country",
         on_delete=models.CASCADE,
         related_name="cities",
         verbose_name=CountryStrings.CityStrings.country_verbose_name)

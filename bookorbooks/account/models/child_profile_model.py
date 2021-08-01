@@ -13,7 +13,7 @@ class ChildProfile(models.Model):
         verbose_name=AccountStrings.ChildProfileStrings.user_verbose_name,
         related_name="user_child")
     city = models.ForeignKey(
-        City,
+        "country.City",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -37,5 +37,8 @@ class ChildProfile(models.Model):
         return self.get_full_name
 
     def clean(self) -> None:
+        """
+        This method will check if the user type is a child during creation.
+        """
         if self.user.user_type != 2:
             raise ValidationError(AccountStrings.ChildProfileStrings.user_type_error)

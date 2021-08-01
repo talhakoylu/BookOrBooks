@@ -5,3 +5,4 @@ from .book_language_model import BookLanguage
 from .author_model import Author
 from .book_model import Book
 from .book_page_model import BookPage
+from .reading_history_model import *

@@ -14,7 +14,7 @@ class ParentProfile(models.Model):
         verbose_name=AccountStrings.ParentProfileStrings.user_verbose_name,
         related_name="user_parent")
     city = models.ForeignKey(
-        City,
+        "country.City",
         on_delete=models.SET_NULL,
         null=True,
         blank=True,
@@ -38,6 +38,9 @@ class ParentProfile(models.Model):
         return self.get_full_name
 
     def clean(self) -> None:
+        """
+        This method will check if the user type is a parent during creation.
+        """
         if self.user.user_type != 3:
             raise ValidationError(AccountStrings.ParentProfileStrings.user_type_error)
 

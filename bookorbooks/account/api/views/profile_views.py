@@ -9,11 +9,17 @@ User = get_user_model()
 
 
 class ChildProfileUpdateAPIView(RetrieveUpdateAPIView):
+    """
+        Provides a "child profile update" page API.
+    """
     queryset = User.objects.all()
     serializer_class = UserChildProfileSerializer
     permission_classes = [IsAuthenticated, IsChild]
 
     def get_object(self):
+        """
+            Retrieves user details from the request.
+        """
         queryset = self.get_queryset()
         obj = User.objects.get(id=self.request.user.id)
         return obj
@@ -23,11 +29,17 @@ class ChildProfileUpdateAPIView(RetrieveUpdateAPIView):
 
 
 class ParentProfileUpdateAPIView(RetrieveUpdateAPIView):
+    """
+        Provides a "parent profile update" page API.
+    """
     queryset = User.objects.all()
     serializer_class = UserParentProfileSerializer
     permission_classes = [IsAuthenticated, IsParent]
 
     def get_object(self):
+        """
+            Retrieves user details from the request.
+        """
         queryset = self.get_queryset()
         obj = User.objects.get(id=self.request.user.id)
         return obj
@@ -37,11 +49,17 @@ class ParentProfileUpdateAPIView(RetrieveUpdateAPIView):
 
 
 class InstructorProfileUpdateAPIView(RetrieveUpdateAPIView):
+    """
+        Provides an "instructor profile update" page API.
+    """
     queryset = User.objects.all()
     serializer_class = UserInstructorProfileSerializer
     permission_classes = [IsAuthenticated, IsInstructor]
 
     def get_object(self):
+        """
+            Retrieves user details from the request.
+        """
         queryset = self.get_queryset()
         obj = User.objects.get(id=self.request.user.id)
         return obj

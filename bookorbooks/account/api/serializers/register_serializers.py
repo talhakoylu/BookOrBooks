@@ -37,6 +37,9 @@ class RegisterSerializer(ModelSerializer):
                 AccountStrings.RegisterSerializerStrings.identity_number_error)
 
     def validate(self, attrs):
+        """
+        This method will check if the fields are valid.
+        """
         validate_password(attrs["password"])
         validate_email(attrs["email"])
         self.user_type_validation(attrs["user_type"])
@@ -66,5 +69,8 @@ class ChangePasswordSerializer(Serializer):
     new_password = serializers.CharField(required = True)
 
     def validate_new_password(self, value):
+        """
+            Validation process of the new password field.
+        """
         validate_password(value)
         return value

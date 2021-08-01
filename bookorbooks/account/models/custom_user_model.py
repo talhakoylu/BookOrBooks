@@ -66,6 +66,9 @@ class CustomUser(AbstractUser):
         return f"{self.first_name} {self.last_name}"
 
     def change_user_type(self):
+        """
+        This method is responsible for creating extra fields according to the user type and deleting the old record when the user profile is updated.
+        """
         user_origin = CustomUser.objects.get(id=self.id)
         if user_origin.user_type != self.user_type:
             ChildProfile.objects.filter(user=self).delete()
@@ -86,6 +89,8 @@ class CustomUser(AbstractUser):
             elif user_origin.user_type == 3:
                 if self.user_type == 2:
                     ChildProfile.objects.get_or_create(user=self)
+                elif self.user_type == 4:
+                    InstructorProfile.objects.get_or_create(user=self)
             elif user_origin.user_type == 4:
                 if self.user_type == 2:
                     ChildProfile.objects.get_or_create(user=self)

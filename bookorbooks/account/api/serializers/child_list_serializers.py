@@ -55,7 +55,7 @@ class ChildrenForDetailSerailizer(ModelSerializer):
         model = ChildList
         fields = ["id", "child"]
 
-class ParentSerializerNew(ModelSerializer):
+class ChildListByParentSerializer(ModelSerializer):
     user = UserSerializer()
     children = ChildrenForDetailSerailizer(many = True, read_only = True, source = "parent_children")
     class Meta:

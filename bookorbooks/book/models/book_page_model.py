@@ -2,13 +2,12 @@ from book.models.abstract_book_base_model import AbstractBookBaseModel
 from django.db import models
 from constants.book_strings import BookStrings
 from django.utils.text import slugify
-from book.models import Book
 from django.core.validators import MinValueValidator, MaxValueValidator
 
 
 class BookPage(AbstractBookBaseModel):
     book = models.ForeignKey(
-        Book,
+        "book.Book",
         on_delete=models.CASCADE,
         verbose_name=BookStrings.BookPageStrings.book_verbose_name,
         related_name="book_pages")

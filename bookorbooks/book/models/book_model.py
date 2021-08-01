@@ -2,21 +2,20 @@ from book.models.abstract_book_base_model import AbstractBookBaseModel
 from django.db import models
 from constants.book_strings import BookStrings
 from django.utils.text import slugify
-from book.models import Category, BookLevel, BookLanguage, Author
 
 class Book(AbstractBookBaseModel):
     category = models.ForeignKey(
-        Category,
+        "book.Category",
         on_delete=models.DO_NOTHING,
         related_name="category_books",
         verbose_name=BookStrings.BookStrings.category_verbose_name)
     level = models.ForeignKey(
-        BookLevel,
+        "book.BookLevel",
         on_delete=models.DO_NOTHING,
         related_name="level_books",
         verbose_name=BookStrings.BookStrings.level_verbose_name)
     language = models.ForeignKey(
-        BookLanguage,
+        "book.BookLanguage",
         on_delete=models.DO_NOTHING,
         related_name="language_books",
         verbose_name=BookStrings.BookStrings.language_verbose_name)
@@ -30,7 +29,7 @@ class Book(AbstractBookBaseModel):
         null=True,
         verbose_name=BookStrings.BookStrings.cover_image_verbose_name)
     author = models.ForeignKey(
-        Author,
+        "book.Author",
         on_delete=models.DO_NOTHING,
         verbose_name=BookStrings.BookStrings.author_verbose_name,
         related_name="books")

@@ -27,4 +27,6 @@ urlpatterns = [
     path('api/book/', include('book.api.urls'), name="book"),
     path('api/country/', include('country.api.urls'), name="country"),
     path('api/account/', include('account.api.urls'), name="account"),
+    path('api/school/', include('school.api.urls'), name="school"),
+    path('api/quiz/', include('quiz.api.urls'), name="quiz"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

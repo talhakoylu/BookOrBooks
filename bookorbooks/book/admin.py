@@ -1,3 +1,4 @@
+from book.models.reading_history_model import ReadingHistory
 from django import forms
 from book.models import Author, Book, BookLanguage, BookLevel, BookPage, Category
 from django.contrib import admin
@@ -91,3 +92,12 @@ class BookPageAdmin(admin.ModelAdmin):
 
     class Meta:
         model = BookPage
+
+
+@admin.register(ReadingHistory)
+class ReadingHistoryAdmin(admin.ModelAdmin):
+    list_display = ["id", "__str__", "is_finished", "created_at", "updated_at", "counter"]
+    list_display_links = ["id", "__str__"]
+
+    class Meta:
+        model = ReadingHistory

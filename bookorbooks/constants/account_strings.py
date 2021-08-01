@@ -55,3 +55,6 @@ class AccountStrings():
         is_parent_message = "To do this, you must be a parent."
         is_child_message = "To do this, you must be a child."
         is_instructor_message = "To do this, you must be a instructor."
+        is_instructor_has_school_message = "To do this, you have to choose the school you work at from your profile page. If the problem persists, please contact the administrator."
+        is_own_class_message = "To do this, you must be the owner of this class."
+        is_own_child_message = "To do this, you must be the parent of this child."

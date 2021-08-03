@@ -4,7 +4,7 @@ from rest_framework.permissions import IsAuthenticated
 from account.models.child_profile_model import ChildProfile
 from book.api.serializers.reading_history_serializers import ChildReadingHistorySerializer, ReadingHistoryCreateSerializer, ReadingHistoryForByChildSerializer, ReadingHistorySerializer
 from book.models.reading_history_model import ReadingHistory
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, get_object_or_404
+from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, get_object_or_404
 from datetime import datetime
 
 
@@ -46,6 +46,12 @@ class AddReadingHistoryAPIView(CreateAPIView):
     serializer_class = ReadingHistoryCreateSerializer
 
     def perform_create(self, serializer):
+        """
+            Normally, a new record is added to the table every time a request is made. If we make an update page, 
+            we need to find current object with value. For avoiding this stages we override perform_create method.
+            With this method, if a book and a child record has already in same row just works update method of object.
+            However, if there is no record about the book and the child, works create method of object. 
+        """
         book = serializer.validated_data["book"]
         is_finished = serializer.validated_data.get('is_finished', )
         child = self.request.user.user_child

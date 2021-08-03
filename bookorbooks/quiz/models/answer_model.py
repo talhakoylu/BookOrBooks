@@ -2,12 +2,13 @@ from constants.quiz_strings import QuizStrings
 from quiz.models.abstract_base_model import AbstractQuizBaseModel
 from django.db import models
 from django.utils.functional import cached_property
+from django.utils.translation import ugettext_lazy as _
 
 
 class Answer(AbstractQuizBaseModel):
     IS_CORRECT_CHOICES = (
-        (True, "Doğru Cevap"),
-        (False, "Yanlış Cevap")
+        (True, _("Doğru Cevap")),
+        (False, _("Yanlış Cevap"))
     )
 
     question = models.ForeignKey("quiz.Question", on_delete=models.CASCADE, related_name = "question_answer", verbose_name=QuizStrings.AnswerStrings.question_verbose_name)

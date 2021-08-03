@@ -1,22 +1,24 @@
+from django.utils.translation import ugettext_lazy as _
+
 class SchoolStrings():
     class SchoolStrings():
-        city_verbose_name = "Şehirler"
-        name_verbose_name = "Okul Adı"
-        address_verbose_name = "Adres"
-        website_verbose_name = "Web Adresi"
-        meta_verbose_name = "Okul"
-        meta_verbose_name_plural = "Okullar"
+        city_verbose_name = _("Şehirler")
+        name_verbose_name = _("Okul Adı")
+        address_verbose_name = _("Adres")
+        website_verbose_name = _("Web Adresi")
+        meta_verbose_name = _("Okul")
+        meta_verbose_name_plural = _("Okullar")
     
     class ClassStrings():
-        school_verbose_name = "Okul"
-        instructor_verbose_name = "Eğitmen"
-        name_verbose_name = "Sınıf Adı"
-        grade_verbose_name = "Sınıf Derecesi"
-        meta_verbose_name = "Sınıf"
-        meta_verbose_name_plural = "Sınıflar"
+        school_verbose_name = _("Okul")
+        instructor_verbose_name = _("Eğitmen")
+        name_verbose_name = _("Sınıf Adı")
+        grade_verbose_name = _("Sınıf Derecesi")
+        meta_verbose_name = _("Sınıf")
+        meta_verbose_name_plural = _("Sınıflar")
     
     class StudentListStrings():
-        school_class_verbose_name = "Sınıf"
-        child_verbose_name = "Öğrenci/Çocuk"
-        meta_verbose_name = "Sınıf Öğrencisi"
-        meta_verbose_name_plural = "Sınıf Öğrencileri"
+        school_class_verbose_name = _("Sınıf")
+        child_verbose_name = _("Öğrenci/Çocuk")
+        meta_verbose_name = _("Sınıf Öğrencisi")
+        meta_verbose_name_plural = _("Sınıf Öğrencileri")

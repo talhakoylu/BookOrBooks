@@ -140,20 +140,3 @@ class TakingQuizAnswerCreateSerializer(ModelSerializer):
     class Meta:
         model = TakingQuizAnswer
         fields = "__all__"
-
-    # def create(self, validated_data):
-        
-
-    #     quiz = TakingQuiz.objects.filter(taking_quizes = validated_data["taking_quiz"]).first()
-    #     answer = Answer.objects.filter(answer = validated_data["answer"]).first()
-    #     question = Question.objects.filter(question = validated_data["question"]).first()
-
-    #     if quiz.quiz == answer.quiz and answer.id == question.answer.id:
-    #         return TakingQuizAnswer.objects.create(
-    #             taking_quiz=validated_data["taking_quiz"],
-    #             question=validated_data["question"],
-    #             answer=validated_data["answer"],
-    #         )
-        
-
-    #     return ValidationError({"error": "Hata"}, code=status.HTTP_403_FORBIDDEN)

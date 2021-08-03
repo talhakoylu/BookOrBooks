@@ -1,3 +1,4 @@
+from django.utils.translation import activate
 from account.models.child_list_model import ChildList
 from account.models.child_profile_model import ChildProfile
 from account.models.parent_profile_model import ParentProfile
@@ -10,6 +11,7 @@ User = get_user_model()
 
 
 class ChildListTests(APITestCase):
+    activate('en')
     url = reverse("account:child_list")
     url_by_parent = reverse("account:child_list_detail")
     url_add = reverse("account:child_list_create")
@@ -144,6 +146,7 @@ class ChildListTests(APITestCase):
 
 
 class ChildListItemDestroyTests(APITestCase):
+    activate('en')
     login_url = reverse("token_obtain_pair")
 
     def setUp(self):

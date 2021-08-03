@@ -3,9 +3,17 @@ from django.db import models
 from constants.book_strings import BookStrings
 from django.utils.text import slugify
 from django.core.validators import MinValueValidator, MaxValueValidator
+from django.utils.translation import ugettext_lazy as _
 
 
 class BookPage(AbstractBookBaseModel):
+    POSITION_CHOICES = (
+        (0, _("Orta")),
+        (1, _("Üst")),
+        (2, _("Alt")),
+    )
+
+
     book = models.ForeignKey(
         "book.Book",
         on_delete=models.CASCADE,
@@ -25,15 +33,18 @@ class BookPage(AbstractBookBaseModel):
         verbose_name=BookStrings.BookPageStrings.image_verbose_name)
     image_position = models.SmallIntegerField(
         verbose_name=BookStrings.BookPageStrings.image_position_verbose_name,
-        help_text=BookStrings.BookPageStrings.image_position_help_text,
         null=True,
         blank=True,
+        choices=POSITION_CHOICES,
+        default= 0,
         validators=[MinValueValidator(0),
                     MaxValueValidator(2)])
     content_position = models.SmallIntegerField(
         verbose_name=BookStrings.BookPageStrings.content_position_verbose_name,
         null=True,
         blank=True,
+        choices=POSITION_CHOICES,
+        default= 0,
         validators=[MinValueValidator(0),
                     MaxValueValidator(2)])
 

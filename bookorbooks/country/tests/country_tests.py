@@ -1,9 +1,11 @@
+from django.utils.translation import activate
 from rest_framework.test import APITestCase
 from django.urls import reverse
 from country.models import Country
 
 
 class CountryTests(APITestCase):
+    activate('en')
     url = reverse("country:country-list")
 
     def setUp(self) -> None:

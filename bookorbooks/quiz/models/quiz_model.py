@@ -2,12 +2,13 @@ from django.utils.functional import cached_property
 from constants.quiz_strings import QuizStrings
 from django.db import models
 from quiz.models.abstract_base_model import AbstractQuizBaseModel
+from django.utils.translation import ugettext_lazy as _
 
 
 class Quiz(AbstractQuizBaseModel):
     ENABLED_CHOICES = (
-        (True, "Aktif"),
-        (False, "Aktif Değil"),
+        (True, _("Aktif")),
+        (False, _("Aktif Değil")),
     )
     
     book = models.ForeignKey("book.Book", on_delete= models.CASCADE, related_name="book_quiz", verbose_name=QuizStrings.QuizStrings.book_verbose_name)

@@ -1,5 +1,4 @@
-class GeneralPermissionStrings():
-    already_authenticated_message = "You are already logged in!"
+from django.utils.translation import ugettext_lazy as _
 
-class ProjectStrings():
-    website_title = "Site Başlığı"
+class GeneralPermissionStrings():
+    already_authenticated_message = _("You are already logged in!")

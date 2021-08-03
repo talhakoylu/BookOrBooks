@@ -1,3 +1,4 @@
+from django.utils.translation import activate
 from account.models.parent_profile_model import ParentProfile
 from account.models.child_profile_model import ChildProfile
 import json
@@ -9,6 +10,7 @@ User = get_user_model()
 
 
 class CustomUserRegistrationTests(APITestCase):
+    activate('en')
     url = reverse("account:register")
     url_login = reverse("token_obtain_pair")
 
@@ -50,7 +52,7 @@ class CustomUserRegistrationTests(APITestCase):
         self.data["password"] = "123"
 
         response = self.client.post(self.url, self.data)
-        self.assertEqual(400, response.status_code)
+        self.assertEqual(400, json.loads(response.content)["status_code"])
 
     def test_unique_fields(self):
         """
@@ -69,7 +71,7 @@ class CustomUserRegistrationTests(APITestCase):
         }
 
         response = self.client.post(self.url, data2)
-        assert 400 == response.status_code
+        assert 400 == json.loads(response.content)["status_code"]
         self.assertTrue("email" in json.loads(response.content))
         self.assertTrue("username" in json.loads(response.content))
         self.assertTrue("identity_number" in json.loads(response.content))
@@ -132,6 +134,7 @@ class CustomUserRegistrationTests(APITestCase):
 
 
 class CustomUserLoginTests(APITestCase):
+    activate('en')
     url_login = reverse("token_obtain_pair")
 
     def setUp(self):
@@ -179,6 +182,7 @@ class CustomUserLoginTests(APITestCase):
 
 
 class CustomUserPasswordChange(APITestCase):
+    activate('en')
     url = reverse("account:update_password")
     url_login = reverse("token_obtain_pair")
 

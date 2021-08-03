@@ -1,3 +1,4 @@
+from book.models.reading_history_model import ReadingHistory
 from constants.quiz_strings import QuizStrings
 from django.core.exceptions import ValidationError
 from rest_framework import status
@@ -84,6 +85,16 @@ class CreateTakingQuizAPIView(CreateAPIView):
     def perform_create(self, serializer):
         return serializer.save(child=self.request.user.user_child)
 
+    def create(self, request, *args, **kwargs):
+        serializer = self.get_serializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+        quiz = serializer.validated_data.get("quiz",)
+        obj = ReadingHistory.objects.filter(child = request.user.user_child, book = quiz.book, is_finished = True)
+        if not obj.exists():
+            return Response({"error": QuizStrings.ValidationErrorMessages.reading_must_finished}, status=status.HTTP_403_FORBIDDEN)
+        self.perform_create(serializer)
+        return Response(serializer.data, status=201)
+
 
 class UpdateTakingQuizAPIView(RetrieveUpdateAPIView):
     """
@@ -121,11 +132,10 @@ class CreateTakingQuizAnswerAPIView(CreateAPIView):
         answer = serializer.validated_data.get("answer",)
         question = serializer.validated_data.get("question",)
 
-
         if taking_quiz.quiz != answer.question.quiz:
-            return Response({"error": QuizStrings.ValidationErrorMessages.answer_is_not_belong_to_quiz}, status=200)
+            return Response({"error": QuizStrings.ValidationErrorMessages.answer_is_not_belong_to_quiz}, status=403)
         elif answer.question != question:
-            return Response({"error": QuizStrings.ValidationErrorMessages.question_is_not_belong_to_quiz}, status=200)
+            return Response({"error": QuizStrings.ValidationErrorMessages.question_is_not_belong_to_quiz}, status=403)
         self.perform_create(serializer)
         return Response(serializer.data, status=201)
 

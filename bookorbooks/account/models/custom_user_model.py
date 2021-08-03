@@ -4,6 +4,7 @@ from account.models.parent_profile_model import ParentProfile
 from constants.account_strings import AccountStrings
 from django.contrib.auth.models import AbstractUser, UserManager
 from django.db import models
+from django.utils.translation import ugettext_lazy as _
 
 
 class CustomUserManager(UserManager):
@@ -52,7 +53,7 @@ class CustomUser(AbstractUser):
     gender = models.PositiveSmallIntegerField(
         choices=GENDER_CHOICES,
         default=1,
-        verbose_name=AccountStrings.CustomUserStrings.gender_verbose_name)
+        verbose_name=_(AccountStrings.CustomUserStrings.gender_verbose_name))
     user_type = models.PositiveSmallIntegerField(
         choices=USER_TYPE_CHOICES,
         default=1,

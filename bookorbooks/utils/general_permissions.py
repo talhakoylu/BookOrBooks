@@ -7,3 +7,9 @@ class NotAuthenticated(BasePermission):
         return not request.user.is_authenticated
 
     message = GeneralPermissionStrings.already_authenticated_message
+
+class IsSuperUser(BasePermission):
+    def has_permission(self, request, view):
+        return request.user.is_superuser
+
+    message = GeneralPermissionStrings.is_superuser_message

@@ -116,7 +116,7 @@ class UpdateTakingQuizAPIView(RetrieveUpdateAPIView):
 
 class CreateTakingQuizAnswerAPIView(CreateAPIView):
     """
-        An API View for adding a data to TakingQuizAnswer table. Create method of this class has been overriden about to validation.
+        An API View for adding a data to TakingQuizAnswer table. Create method of this class has been overridden about to validation.
     """
     queryset = TakingQuizAnswer.objects.all()
     serializer_class = TakingQuizAnswerCreateSerializer
@@ -133,10 +133,10 @@ class CreateTakingQuizAnswerAPIView(CreateAPIView):
         question = serializer.validated_data.get("question",)
 
         if taking_quiz.quiz != answer.question.quiz:
-            return Response({"error": QuizStrings.ValidationErrorMessages.answer_is_not_belong_to_quiz}, status=403)
+            return Response({"error": QuizStrings.ValidationErrorMessages.answer_is_not_belong_to_question}, status=status.HTTP_403_FORBIDDEN)
         elif answer.question != question:
-            return Response({"error": QuizStrings.ValidationErrorMessages.question_is_not_belong_to_quiz}, status=403)
+            return Response({"error": QuizStrings.ValidationErrorMessages.question_is_not_belong_to_quiz}, status=status.HTTP_403_FORBIDDEN)
         self.perform_create(serializer)
-        return Response(serializer.data, status=201)
+        return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     

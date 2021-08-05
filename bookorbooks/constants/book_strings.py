@@ -66,3 +66,4 @@ class BookStrings():
 
     class PermissionStrings():
         is_own_child_permission = _("The person whose record you want to see must be your child.")
+        is_parent_or_instructor = _("To see this page, you must be a parent or an instructor")

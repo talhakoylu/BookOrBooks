@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2021-08-03 13:58+0300\n"
+"POT-Creation-Date: 2021-08-05 14:45+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -356,6 +356,10 @@ msgstr ""
 msgid "The person whose record you want to see must be your child."
 msgstr "Kaydını görmek istediğiniz kişi sizin çocuğunuz olmak zorundadır."
 
+#: .\constants\book_strings.py:69
+msgid "To see this page, you must be a parent or an instructor"
+msgstr "Bu sayfayı görebilmek için bir ebevyn veya eğitmen olmanız gerekmekte."
+
 #: .\constants\country_strings.py:5 .\constants\country_strings.py:7
 #: .\constants\country_strings.py:9 .\constants\country_strings.py:12
 msgid "Ülke"
@@ -380,6 +384,10 @@ msgstr ""
 #: .\constants\general_strings.py:4
 msgid "You are already logged in!"
 msgstr "Zaten giriş yaptınız!"
+
+#: .\constants\general_strings.py:5
+msgid "To do this, you must be an admin!"
+msgstr "Bu işlemi yapabilmek için admin olmanız gerekmektedir."
 
 #: .\constants\quiz_strings.py:11
 msgid "Sınav Aktif Mi?"

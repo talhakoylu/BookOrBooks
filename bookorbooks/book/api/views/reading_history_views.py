@@ -1,10 +1,12 @@
+from book.api.permissions import IsParentOrInstructor
+from utils.general_permissions import IsSuperUser
 from django.shortcuts import get_list_or_404
-from account.api.permissions import IsParent
+from account.api.permissions import IsChild, IsParent
 from rest_framework.permissions import IsAuthenticated
 from account.models.child_profile_model import ChildProfile
 from book.api.serializers.reading_history_serializers import ChildReadingHistorySerializer, ReadingHistoryCreateSerializer, ReadingHistoryForByChildSerializer, ReadingHistorySerializer
 from book.models.reading_history_model import ReadingHistory
-from rest_framework.generics import CreateAPIView, ListAPIView, RetrieveAPIView, RetrieveUpdateAPIView, get_object_or_404
+from rest_framework.generics import CreateAPIView, ListAPIView
 from datetime import datetime
 
 
@@ -14,6 +16,7 @@ class ReadingHistoryListAllAPIView(ListAPIView):
     """
     queryset = ReadingHistory.objects.all()
     serializer_class = ReadingHistorySerializer
+    permission_classes = [IsAuthenticated, IsSuperUser]
 
 
 class ReadingHistoryByChildAPIView(ListAPIView):
@@ -21,6 +24,7 @@ class ReadingHistoryByChildAPIView(ListAPIView):
         Returns the list of all read history by current logged in child user.
     """
     serializer_class = ChildReadingHistorySerializer
+    permission_classes = [IsAuthenticated, IsChild]
 
     def get_queryset(self):
         return ChildProfile.objects.filter(user=self.request.user.id)
@@ -28,10 +32,10 @@ class ReadingHistoryByChildAPIView(ListAPIView):
 class ReadingHistoryByChildIdAPIView(ListAPIView):
     """
         Returns the read history according to the Child Id value. To see this page,
-        you must be logged in, parent.
+        you must be logged in as a parent or an instructor.
     """
     serializer_class = ReadingHistoryForByChildSerializer
-    permission_classes = [IsAuthenticated, IsParent]
+    permission_classes = [IsAuthenticated, IsParentOrInstructor]
     
     def get_queryset(self):
         return get_list_or_404(ReadingHistory, child_id = self.kwargs["child_id"])
@@ -44,6 +48,7 @@ class AddReadingHistoryAPIView(CreateAPIView):
     """
     queryset = ReadingHistory.objects.all()
     serializer_class = ReadingHistoryCreateSerializer
+    permission_classes = [IsAuthenticated, IsChild]
 
     def perform_create(self, serializer):
         """

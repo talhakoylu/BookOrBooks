@@ -22,7 +22,7 @@ class QuestionSerializer(ModelSerializer):
         model = Question
         fields = "__all__"
 
-class QuestionWithQuizSerilaizer(ModelSerializer):
+class QuestionWithQuizSerializer(ModelSerializer):
     """
         This serializer is return the response with quiz details, list of quiz's questions and at the same time 
         the list of question's answers.

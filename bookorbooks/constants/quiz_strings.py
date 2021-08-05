@@ -47,6 +47,6 @@ class QuizStrings():
         meta_verbose_name_plural = _("Çözülmüş Sınav Cevapları")
 
     class ValidationErrorMessages():
-        answer_is_not_belong_to_quiz = _("This answer does not belong to the question you chose, please check it.")
+        answer_is_not_belong_to_question = _("This answer does not belong to the question you chose, please check it.")
         question_is_not_belong_to_quiz = _("This question does not belong to the exam you chose, please check it.")
         reading_must_finished = _("To solve the book quiz, you must finish reading that book.")

@@ -2,7 +2,7 @@ from quiz.models.question_model import Question
 from django.shortcuts import get_list_or_404
 from quiz.models.quiz_model import Quiz
 from rest_framework.permissions import IsAuthenticated
-from quiz.api.serializers.question_serializers import QuestionSerializer, QuestionWithQuizSerilaizer
+from quiz.api.serializers.question_serializers import QuestionSerializer, QuestionWithQuizSerializer
 from rest_framework.generics import ListAPIView, RetrieveAPIView, get_object_or_404
 
 
@@ -10,7 +10,7 @@ class GetQuestionsByQuizIdAPIView(RetrieveAPIView):
     """
         Returns a list of questions that belongs to the current quiz id.
     """
-    serializer_class = QuestionWithQuizSerilaizer
+    serializer_class = QuestionWithQuizSerializer
     permission_classes = [IsAuthenticated]
     queryset = Quiz.objects.all()
 
@@ -25,7 +25,7 @@ class GetQuestionsByEnabledQuizIdAPIView(RetrieveAPIView):
     """
         Returns the list of last added enabled quiz's questions by quiz id.
     """
-    serializer_class = QuestionWithQuizSerilaizer
+    serializer_class = QuestionWithQuizSerializer
     permission_classes = [IsAuthenticated]
     queryset = Quiz.objects.all()
 
@@ -46,7 +46,7 @@ class QuestionsAllAPIView(ListAPIView):
 
 class GetQuestionByIdAPIView(RetrieveAPIView):
     """
-        Returns a spesific question object by id value.
+        Returns a specific question object by id value.
     """
     queryset = Question.objects.all()
     serializer_class = QuestionSerializer
@@ -61,9 +61,9 @@ class GetQuestionByIdAPIView(RetrieveAPIView):
 
 class GetQuizByBookIdAPIView(ListAPIView):
     """
-        Returns a spesific quiz by book id.
+        Returns a specific quiz by book id.
     """
-    serializer_class = QuestionWithQuizSerilaizer
+    serializer_class = QuestionWithQuizSerializer
     permission_classes = [IsAuthenticated]
 
     def get_queryset(self):
@@ -71,9 +71,9 @@ class GetQuizByBookIdAPIView(ListAPIView):
 
 class GetLastEnabledQuizByBookIdAPIView(RetrieveAPIView):
     """
-        Returns a spesific quiz by book id.
+        Returns a specific quiz by book id.
     """
-    serializer_class = QuestionWithQuizSerilaizer
+    serializer_class = QuestionWithQuizSerializer
     permission_classes = [IsAuthenticated]
     queryset = Quiz.objects.all()
 

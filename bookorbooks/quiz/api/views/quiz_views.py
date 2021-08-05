@@ -6,7 +6,7 @@ from rest_framework.permissions import IsAuthenticated
 
 class QuizListAllAPIView(ListAPIView):
     """
-        Returns the list of all quizes
+        Returns the list of all quizzes
     """
 
     queryset = Quiz.objects.all()
@@ -15,7 +15,7 @@ class QuizListAllAPIView(ListAPIView):
 
 class OnlyEnabledQuizesAPIView(ListAPIView):
     """
-        Returns the list of only enabled quizes.
+        Returns the list of only enabled quizzes.
     """
     serializer_class = QuizStandardSerializer
     permission_classes = [IsAuthenticated]

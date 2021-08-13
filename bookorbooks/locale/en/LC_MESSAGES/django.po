@@ -392,7 +392,7 @@ msgstr "Country Code"
 #: .\constants\country_strings.py:13 .\constants\country_strings.py:23
 #: .\constants\country_strings.py:25
 msgid "Bölge"
-msgstr ""
+msgstr "District"
 
 #: .\constants\country_strings.py:15 .\constants\school_strings.py:5
 msgid "Şehirler"
